@@ -41,6 +41,7 @@ public class MyServiceImpl implements MyService
 		String zipFilePath = this.download(url);
 		if (StrUtil.isBlank(zipFilePath))
 		{
+			FileUtil.del(WORK_DIR);
 			return CommonResult.errorMsg("下载文件失败");
 		}
 
@@ -48,6 +49,7 @@ public class MyServiceImpl implements MyService
 		String codeInfile = this.getCodeInfile(zipFilePath);
 		if (StrUtil.isBlank(codeInfile))
 		{
+			FileUtil.del(WORK_DIR);
 			return CommonResult.errorMsg("提取文件中的激活码失败");
 		}
 		FileUtil.del(WORK_DIR);

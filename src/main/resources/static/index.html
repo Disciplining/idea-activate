@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>激活码</title>
+        <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <input id="url" type="text" placeholder="输入公众号获得的链接"/>
+        <div id="send-url">提交</div>
+        <div id="code"></div>
+        <script>
+            $('#send-url').click
+            (
+                function ()
+                {
+                    let url = $('#url').val();
+                    if (url === '')
+                    {
+                        alert('url不能为空');
+                        return;
+                    }
+
+                    $.ajax
+                    (
+                        {
+                            url : 'get-code?url='+url, //请求的url
+                            type : 'GET', //以何种方法发送报文
+                            dataType : 'json', //预期的服务器返回的数据类型
+                            success : function (res) //请求成功执行的访求
+                            {
+                                if (res.success)
+                                {
+                                    $("#code").text(res.data);
+                                }
+                                else
+                                {
+                                    $("#code").text(res.msg);
+                                }
+                            },
+                            error : function () //请求失败执行的方法
+                            {
+                                console.log('请求失败');
+                            }
+                        }
+                    );
+                }
+            );
+        </script>
+    </body>
+</html>

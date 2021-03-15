@@ -6,18 +6,32 @@
 
         <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+        <script src="./clipboard.min.js"></script>
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
         <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+            body
+            {
+                padding-top: 20px;
+            }
+        </style>
     </head>
 
     <body>
         <div class="container">
-            <input class="input" id="url" type="text" placeholder="输入公众号获得的链接"/> <br><br>
+            <input class="form-control" id="url" type="text" placeholder="输入公众号获得的链接"/> <br><br>
             <div id="send-url" class="btn btn-primary">提交</div> <br><br>
-            <kbd id="code"></kbd>
+            <kbd id="code"></kbd> <br/><br/>
+            <button id="copy" class="btn btn-success" data-clipboard-target="#code">复制</button>
             <script>
+                var clipboard = new ClipboardJS('.btn');
+
                 $("#code").hide();
+                $("#copy").hide();
 
                 $('#send-url').click
                 (
@@ -42,6 +56,7 @@
                                     if (res.success)
                                     {
                                         $("#code").text(res.data);
+                                        $("#copy").show();
                                     }
                                     else
                                     {

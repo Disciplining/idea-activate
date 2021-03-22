@@ -19,7 +19,7 @@
 
 	<!-- 坐标 -->
 	<groupId>lyx.com</groupId>
-	<artifactId>springboot-study</artifactId>
+	<artifactId>idea-activate</artifactId>
 	<version>1.0.0</version>
 
 	<dependencies>
